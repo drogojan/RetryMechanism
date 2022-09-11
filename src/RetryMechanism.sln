@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RetryMechanism", "RetryMechanism\RetryMechanism.csproj", "{FD3DAE40-3B34-4086-A6C1-8E7D9483814C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RetryMechanism.UnitTests", "RetryMechanism.UnitTests\RetryMechanism.UnitTests.csproj", "{51DEDB13-B009-45A7-9512-79203062C499}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FD3DAE40-3B34-4086-A6C1-8E7D9483814C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD3DAE40-3B34-4086-A6C1-8E7D9483814C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD3DAE40-3B34-4086-A6C1-8E7D9483814C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD3DAE40-3B34-4086-A6C1-8E7D9483814C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51DEDB13-B009-45A7-9512-79203062C499}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51DEDB13-B009-45A7-9512-79203062C499}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51DEDB13-B009-45A7-9512-79203062C499}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51DEDB13-B009-45A7-9512-79203062C499}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
