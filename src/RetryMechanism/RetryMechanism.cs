@@ -4,7 +4,14 @@ namespace RetryMechanism
     {
         public static T WaitAndRetry<T>(Func<T> function, int retries, Func<int, int> waitTimeProvider, Action<int> wait)
         {
-            return function();
+            try
+            {
+                return function();
+            }
+            catch
+            {
+                return function();
+            }
         }
     }
 }
