@@ -17,6 +17,7 @@ namespace RetryMechanism
                     {
                         throw;
                     }
+                    wait(waitTimeProvider(retry));
                     retry++;
                 }
             } while (true);

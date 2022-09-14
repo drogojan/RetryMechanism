@@ -63,4 +63,21 @@ public class WaitAndRetryTests
 
         executingWithRetry.Should().Throw<Exception>().WithMessage("Some error on the third retry");
     }
+
+    [Fact]
+    public void Should_Wait_Using_The_Provided_Wait_Time_For_Each_Retry()
+    {
+        Queue<Func<int>> functionExectionsQueue = new Queue<Func<int>>();
+        functionExectionsQueue.Enqueue(() => throw new Exception("Some error on the initial try"));
+        functionExectionsQueue.Enqueue(() => throw new Exception("Some error on the first retry"));
+        functionExectionsQueue.Enqueue(() => throw new Exception("Some error on the second retry"));
+        functionExectionsQueue.Enqueue(() => 123);
+
+        var exponentialBackOffWaitTimeProvider = (int retry) => (int)Math.Pow(2, retry) * 1000;
+        var waitedTimeQueue = new Queue<int>();
+        var wait = (int waitTime) => { waitedTimeQueue.Enqueue(waitTime); };
+        RetryMechanism.WaitAndRetry<int>(() => functionExectionsQueue.Dequeue()(), 3, exponentialBackOffWaitTimeProvider, wait);
+
+        waitedTimeQueue.Should().ContainInOrder(1000, 2000, 4000);
+    }
 }
