@@ -4,6 +4,7 @@ namespace RetryMechanism
     {
         public static T WaitAndRetry<T>(Func<T> function, int retries, Func<int, int> waitTimeProvider, Action<int> wait)
         {
+            var retry = 0;
             do
             {
                 try
@@ -12,6 +13,11 @@ namespace RetryMechanism
                 }
                 catch
                 {
+                    if (retry == retries)
+                    {
+                        throw;
+                    }
+                    retry++;
                 }
             } while (true);
         }

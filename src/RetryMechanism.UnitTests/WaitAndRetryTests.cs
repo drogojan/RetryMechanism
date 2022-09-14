@@ -49,4 +49,18 @@ public class WaitAndRetryTests
 
         result.Should().Be(123);
     }
+
+    [Fact]
+    public void Should_Throw_When_All_The_Retries_Are_Depleted()
+    {
+        Queue<Func<int>> functionExectionsQueue = new Queue<Func<int>>();
+        functionExectionsQueue.Enqueue(() => throw new Exception("Some error on the initial try"));
+        functionExectionsQueue.Enqueue(() => throw new Exception("Some error on the first retry"));
+        functionExectionsQueue.Enqueue(() => throw new Exception("Some error on the second retry"));
+        functionExectionsQueue.Enqueue(() => throw new Exception("Some error on the third retry"));
+
+        var executingWithRetry = () => RetryMechanism.WaitAndRetry<int>(() => functionExectionsQueue.Dequeue()(), 3, (_) => _, (_) => { });
+
+        executingWithRetry.Should().Throw<Exception>().WithMessage("Some error on the third retry");
+    }
 }
